@@ -10,7 +10,11 @@ class Recipe(object):
         self.options = options
         self.name = name
         output = {}
-        output['json-path'] = json.dumps(self._get_working_set(), indent=4)
+        paths = self._get_working_set()
+        output['json-path'] = json.dumps(paths, indent=4)
+        if options['format']:
+            format_str = options.get('format')
+            output['formatted-path'] = "".join([format_str % path for path in paths])
         self.options.update(output)
 
     def install(self):
