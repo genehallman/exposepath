@@ -29,7 +29,7 @@ class Recipe(object):
             relative_path = self.buildout['buildout']['directory']
 
         egg = Egg(self.buildout, self.options['recipe'], self.options)
-        ws = egg.working_set()[1]
+        ws = egg.working_set(extra=self.options.get('extra-paths', '').split('\n'))[1]
         retval = [dist.location for dist in ws]
 
         if relative_path:
