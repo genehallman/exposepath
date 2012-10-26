@@ -1,0 +1,9 @@
+.installed.cfg
+.project
+.pydevproject
+.settings/*
+build/*
+develop-eggs/*
+dist/*
+eggs/*
+src/collective.recipe.exposepath.egg-info/*
