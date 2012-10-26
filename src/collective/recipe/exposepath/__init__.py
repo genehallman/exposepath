@@ -29,8 +29,11 @@ class Recipe(object):
             relative_path = self.buildout['buildout']['directory']
 
         egg = Egg(self.buildout, self.options['recipe'], self.options)
-        ws = egg.working_set(extra=self.options.get('extra-paths', '').split('\n'))[1]
+        extra_paths = self.options.get('extra-paths', '').split('\n')
+
+        ws = egg.working_set()[1]
         retval = [dist.location for dist in ws]
+        retval.extend(extra_paths)
 
         if relative_path:
             eggs_dir = self.buildout['buildout'].get('eggs-directory', '.')
