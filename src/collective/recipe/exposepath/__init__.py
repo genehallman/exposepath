@@ -14,7 +14,7 @@ class Recipe(object):
         output['json-path'] = json.dumps(paths, indent=4)
         if options['format']:
             format_str = options.get('format')
-            output['formatted-path'] = "\n  ".join(path if path.startswith("/") else format_str % path for path in paths)
+            output['formatted-path'] = "\n  ".join("'%s'" % path if path.startswith("/") else format_str % path for path in paths)
         self.options.update(output)
 
     def install(self):
